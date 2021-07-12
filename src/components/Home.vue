@@ -54,20 +54,20 @@ export default {
       }
     },
 
-    randomColor: function({ randomArray, index }) {
+    randomColor: function(data) {
       return new Promise(resolve => setTimeout(() => {
         
-        if (!randomArray[index]) {
-          this.indexSelected = []
-          this.inSequence = false
-          return resolve()
+        if (data.randomArray[data.index]) {
+            //Agregar secuencia
+            this.setSequence.push(data.randomArray[data.index])
+            // Número seleccionado
+            this.indexSelected.push(data.randomArray[data.index])
+            resolve()
+        } else {
+            this.indexSelected = []
+            this.inSequence = false
+            resolve()
         }
-        
-        //Agregar secuencia
-        this.setSequence.push(randomArray[index])
-        // Número seleccionado
-        this.indexSelected.push(randomArray[index])
-        resolve()
       }, 400))
     },
 
